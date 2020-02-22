@@ -4,6 +4,4 @@
 
 <p *ngIf="user">Logged in as: {{ user?.email }} - {{ user?.displayName }}</p>
 
-<button class="btn btn-primary mr-2" *ngIf="!user" (click)="register()">Регистрировать</button>
 <button class="btn btn-primary" *ngIf="user" (click)="logout()">Выйти</button>
-<button class="btn btn-primary" *ngIf="!user" (click)="login()">Вход</button>

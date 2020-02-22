@@ -13,6 +13,7 @@ export class AuthService {
   eventAuthError$ = this.eventAuthError.asObservable();
 
   newUser: any;
+  isLoggedIn: boolean = false;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -23,13 +24,15 @@ export class AuthService {
       return this.afAuth.authState;
     }
 
-    login( email: string, password: string){
+    login( email: string, password: string) {
+      
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .catch(error => {
         this.eventAuthError.next(error)
       })
       .then(userCredential => {
         if(userCredential){
+          this.isLoggedIn = true;
           this.router.navigate(['/home']);
         }
       })

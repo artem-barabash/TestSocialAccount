@@ -15,11 +15,15 @@ import { HomeComponent } from './home/home.component';
 
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path: 'login', component:  LoginComponent},
   {path: 'register', component:  RegistrationComponent},
-  {path: 'home', component:  HomeComponent},
+  {
+    path: 'home', component:  HomeComponent,
+    canActivate: [AuthGuard]
+  },
 ];
 
 
@@ -41,7 +45,7 @@ const routes: Routes = [
     AngularFireDatabaseModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

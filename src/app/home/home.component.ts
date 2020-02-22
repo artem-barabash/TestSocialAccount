@@ -20,16 +20,10 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  login(){
-    this.router.navigate(['/login']);
-  }
-
   logout(){
     this.auth.logout();
-  }
-
-  register(){
-    this.router.navigate(['/register']);
+    this.router.navigate(['/login']);
+    this.auth.isLoggedIn = false;
   }
 
 }
